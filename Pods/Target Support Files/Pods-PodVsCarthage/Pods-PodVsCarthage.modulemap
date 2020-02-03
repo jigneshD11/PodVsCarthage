@@ -1,0 +1,6 @@
+framework module Pods_PodVsCarthage {
+  umbrella header "Pods-PodVsCarthage-umbrella.h"
+
+  export *
+  module * { export * }
+}

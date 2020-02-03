@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>MYSTIQUE</title>
+    </head>
+    <body>
+    </body>
+    <script type="text/javascript">
+        window.JBridge = top.JBridge;
+        window.Android = top.Android;
+        window.DUIGatekeeper = window.JBridge;
+        window.__OS = "IOS";
+        window.__DEVICE_DETAILS = JSON.parse(JBridge.deviceDetails());
+        (function(){
+             var _log = console.log;
+             var _error = console.error;
+             var _warning = console.warning;
+             console.error = function(errMessage){
+                 _error.apply(console,arguments);
+                 JBridge.logData("error",arguments);
+             };
+             console.log = function(logMessage){
+                 _log.apply(console,arguments);
+                 JBridge.logData("log",arguments);
+             };
+             console.warning = function(warnMessage){
+                 _warning.apply(console,arguments);
+                 JBridge.logData("warning",arguments);
+             };
+         })();
+    </script>
+    <script type="text/javascript">
+        function loadFile(){
+            var headID = document.getElementsByTagName("head")[0];
+            var newScript = document.createElement('script');
+            newScript.type = 'text/javascript';
+            newScript.id = 'mystique';
+            //newScript.innerHTML = JBridge.loadFileInDUI('george.js');
+            //newScript.innerHTML = JBridge.loadFileInDUI('presto-dom-test.js');
+            newScript.innerHTML = DUIGatekeeper.loadFileInDUI('payments-in.hyper.pay-v1-index_bundle.js');
+            headID.appendChild(newScript);
+            /**if (JBridge.isDebugEnabled() == "true") {
+                newScript.innerHTML = DUIGatekeeper.loadFileInDUI('payments-in.hyper.pay-v1-index_bundle.js');
+            } else {
+                newScript.innerHTML = JBridge.loadFileInDUI('payments/in.hyper.pay/v1-index_bundle.jsa');
+            }
+            headID.appendChild(newScript);**/
+        }
+        loadFile()
+    </script>
+</html>

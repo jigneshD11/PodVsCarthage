@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>MYSTIQUE</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            debugger;
+            window.JBridge = top.JBridge;
+            window.Android = top.Android;
+            window.DUIGatekeeper = JBridge;
+            window.JOS = top.document.getElementById("in.juspay.ec").JOS;
+            window.__OS = "IOS";
+            window.__DEVICE_DETAILS = JSON.parse(JBridge.deviceDetails());
+            function loadFile(){
+                var headID = document.getElementsByTagName("head")[0];
+                var newScript = document.createElement('script');
+                newScript.type = 'text/javascript';
+                newScript.id = 'mystique';
+                //if (DUIGatekeeper.isDebugEnabled() == "true") {
+                    newScript.innerHTML = DUIGatekeeper.loadFileInDUI('index_bundle.js');
+                /*} else {
+                    newScript.innerHTML = DUIGatekeeper.loadFileInDUI('payments/in.juspay.ec/v1-index_bundle.jsa');
+                }*/
+                headID.appendChild(newScript);
+            }
+        loadFile()
+        </script>
+     </body>
+</html>
