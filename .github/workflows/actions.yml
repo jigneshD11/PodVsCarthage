@@ -8,12 +8,9 @@ on:
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: macos
 
     steps:
-      - uses: actions/labeler@v2
-        with:
-          repo-token: ${{ secrets.TOKEN }}
       - uses: actions/checkout@v1
       - run: brew install fastlane
       - run: pod install
